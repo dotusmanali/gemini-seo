@@ -19,6 +19,7 @@ description: "Main SEO Orchestrator. Coordinates all 27 specialized SEO sub-skil
 | `/seo decay <url>` | **NEW: Content Decay & Cannibalization Detector** | 1-2 min |
 | `/seo pov <url>` | **NEW: Multi-LLM POV (Perplexity vs GPT-4o search)** | 1-2 min |
 | `/seo outreach <url>`| **NEW: Automated PR & Journalist Outreach generator** | 1-2 min |
+| `/seo report <url>` | **NEW: Generates an Interactive HTML visual report** | 10 sec |
 | `/seo page <url>` | Single page deep dive | 30 sec |
 | All other `/seo` commands | Single specialist | 15-30 sec |
 

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Audit Report - {{ domain }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; }
+        .header-bg { background-color: #0ea5e9; }
+        .score-circle {
+            width: 150px; height: 150px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 3rem; font-weight: 700; color: #ef4444; border: 8px solid #fecaca; margin: 0 auto;
+        }
+        .score-circle.good { color: #22c55e; border-color: #bbf7d0; }
+        .score-circle.warning { color: #f59e0b; border-color: #fef08a; }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Header -->
+    <header class="header-bg text-white p-10 flex justify-between items-center shadow-md">
+        <div>
+            <h1 class="text-4xl font-bold mb-2">Site Audit Report</h1>
+            <p class="text-lg opacity-90">{{ domain }}</p>
+            <p class="text-sm opacity-75 mt-4">Generated: {{ date }}</p>
+        </div>
+        <div class="bg-white text-slate-800 rounded-xl p-6 shadow-lg text-center w-64">
+            <div class="score-circle {% if score >= 80 %}good{% elif score >= 50 %}warning{% endif %}">
+                {{ score }}<span class="text-2xl">%</span>
+            </div>
+            <p class="mt-4 font-semibold text-slate-500 uppercase tracking-wide">Health Score</p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto p-8 mt-4">
+        
+        <!-- Summary Cards -->
+        <h2 class="text-3xl font-bold mb-6 text-slate-800">Summary</h2>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+            <div class="bg-red-50 rounded-xl p-6 border border-red-100 flex items-center shadow-sm">
+                <div class="bg-red-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4">!</div>
+                <div>
+                    <p class="text-3xl font-bold text-red-700">{{ errors }}</p>
+                    <p class="text-red-900 font-medium">Errors</p>
+                </div>
+            </div>
+            <div class="bg-amber-50 rounded-xl p-6 border border-amber-100 flex items-center shadow-sm">
+                <div class="bg-amber-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4">!</div>
+                <div>
+                    <p class="text-3xl font-bold text-amber-700">{{ warnings }}</p>
+                    <p class="text-amber-900 font-medium">Warnings</p>
+                </div>
+            </div>
+            <div class="bg-blue-50 rounded-xl p-6 border border-blue-100 flex items-center shadow-sm">
+                <div class="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4">i</div>
+                <div>
+                    <p class="text-3xl font-bold text-blue-700">{{ info }}</p>
+                    <p class="text-blue-900 font-medium">Info</p>
+                </div>
+            </div>
+            <div class="bg-indigo-50 rounded-xl p-6 border border-indigo-100 flex items-center shadow-sm">
+                <div class="bg-indigo-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4">#</div>
+                <div>
+                    <p class="text-3xl font-bold text-indigo-700">{{ pages }}</p>
+                    <p class="text-indigo-900 font-medium">Pages</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Issue Categories -->
+        {% for category in categories %}
+        <div class="mb-10">
+            <div class="flex justify-between items-center rounded-t-lg p-4 {% if category.severity == 'error' %}bg-red-500 text-white{% elif category.severity == 'warning' %}bg-amber-500 text-white{% else %}bg-emerald-500 text-white{% endif %}">
+                <h3 class="text-2xl font-bold">{{ category.name }}</h3>
+                <span class="font-bold">{{ category.issue_count }} issues</span>
+            </div>
+            <div class="bg-white border border-t-0 border-slate-200 rounded-b-lg p-6 shadow-sm">
+                {% for issue in category.issues %}
+                <div class="mb-6 last:mb-0 border-b border-slate-100 last:border-0 pb-6 last:pb-0">
+                    <div class="flex items-center mb-2">
+                        <span class="w-4 h-4 rounded-full mr-3 {% if issue.status == 'OK' %}bg-emerald-400{% elif issue.status == 'Error' %}bg-red-400{% else %}bg-amber-400{% endif %}"></span>
+                        <h4 class="text-lg font-bold text-slate-800">{{ issue.title }}</h4>
+                        <span class="ml-4 text-sm font-semibold {% if issue.status == 'OK' %}text-emerald-600{% elif issue.status == 'Error' %}text-red-600{% else %}text-amber-600{% endif %}">{{ issue.status }}</span>
+                    </div>
+                    <p class="text-slate-500 mb-3 ml-7">{{ issue.description }}</p>
+                    
+                    {% if issue.urls %}
+                    <div class="ml-7 bg-slate-50 rounded-lg p-4 text-sm font-mono text-slate-600 overflow-x-auto">
+                        <ul class="list-disc list-inside ml-2">
+                            {% for url in issue.urls %}
+                            <li><a href="{{ url }}" target="_blank" class="hover:text-blue-600 truncate block">{{ url }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center p-6 text-slate-400 text-sm border-t border-slate-200 mt-10">
+        <p>Report generated by Gemini SEO • Muhammad Usman Ali</p>
+    </footer>
+
+</body>
+</html>

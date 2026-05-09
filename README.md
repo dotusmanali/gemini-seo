@@ -94,6 +94,10 @@ Gemini SEO provides a suite of 30+ commands. Here is how to use the most importa
 **What it does:** Scans your niche for top journalists and bloggers, then generates personalized email pitches.  
 **Value:** Automates the hardest part of SEO: Link Building and PR.
 
+#### 8. `/seo report <url>`
+**What it does:** Generates a beautiful, interactive HTML Audit Report mimicking high-end PDF audits.  
+**Value:** Perfect for presenting audit findings to clients or stakeholders in a visually appealing format.
+
 ---
 
 ### 🛠️ Core Specialists

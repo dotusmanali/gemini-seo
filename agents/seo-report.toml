@@ -1,0 +1,12 @@
+name = "seo-report"
+description = "Generates a beautiful interactive HTML audit report from raw JSON data."
+skill_path = "skills/seo-report/GEMINI.md"
+capabilities = ["html_generation", "reporting"]
+parallel = false
+timeout_seconds = 60
+
+[input_schema]
+url = "string"
+
+[output_schema]
+report = "string"

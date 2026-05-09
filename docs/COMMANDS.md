@@ -27,6 +27,12 @@ This guide explains every command in the Gemini SEO suite, what it does, and how
     5.  **Schema Pack**: Complete JSON-LD templates.
 *   **When to use**: Before you write the first line of code for a new project.
 
+### `/seo report <url>`
+*   **Description**: Interactive HTML Report Generator.
+*   **What it does**: Compiles raw JSON audit data into a beautiful, shareable HTML report with dynamic charts and categorized issues.
+*   **When to use**: When you need a client-facing presentation of the audit results.
+*   **Output**: `output/report/[url]_audit_report.html`
+
 ---
 
 ## 📝 WORDPRESS & BACKEND (MCP)

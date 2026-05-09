@@ -2,10 +2,10 @@ import argparse
 import json
 import os
 from datetime import datetime
-from jinja2 import Environment, FileSystemPathLoader
+from jinja2 import Environment, FileSystemLoader
 
 def generate_report(domain, score, errors, warnings, info, pages, categories, output_path):
-    env = Environment(loader=FileSystemPathLoader(os.path.join(os.path.dirname(__file__), '../schema')))
+    env = Environment(loader=FileSystemLoader(os.path.join(os.path.dirname(__file__), '../schema')))
     template = env.get_template('report_template.html')
     
     html_content = template.render(

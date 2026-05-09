@@ -9,6 +9,11 @@ Reference this file in your main `GEMINI.md` to enable the suite.
 
 ## 🕹️ Core Specialists
 - [[skills/seo/GEMINI.md]] - **Orchestrator**
+- [[skills/seo-wp/GEMINI.md]] - **WordPress MCP Deep Audit** (NEW)
+- [[skills/seo-links/GEMINI.md]] - **Internal Link Grapher** (NEW)
+- [[skills/seo-decay/GEMINI.md]] - **Content Decay Detector** (NEW)
+- [[skills/seo-pov/GEMINI.md]] - **Multi-LLM POV Audit** (NEW)
+- [[skills/seo-outreach/GEMINI.md]] - **Automated PR Outreach** (NEW)
 - [[skills/seo-technical/GEMINI.md]] - **Technical Audit**
 - [[skills/seo-content/GEMINI.md]] - **Content & E-E-A-T**
 - [[skills/seo-aeo/GEMINI.md]] - **Answer Engine Optimization**

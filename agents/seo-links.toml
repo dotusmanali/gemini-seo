@@ -1,0 +1,12 @@
+name = "seo-links"
+description = "AI internal link grapher for optimizing link juice and finding orphaned pages."
+skill_path = "skills/seo-links/GEMINI.md"
+capabilities = ["crawler", "graph_analysis"]
+parallel = true
+timeout_seconds = 300
+
+[input_schema]
+url = "string"
+
+[output_schema]
+report = "string"

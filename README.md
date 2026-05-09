@@ -53,18 +53,98 @@ graph TD
 
 ---
 
-## 🕹️ Command Reference
+## 🕹️ Full Command Guide & Usage
 
-| Command | Category | Purpose |
+Gemini SEO provides a suite of 30+ commands. Here is how to use the most important ones:
+
+### 🌟 Mega Commands (Flagships)
+
+#### 1. `/seo full <url>`
+**What it does:** Runs all 27 specialists in parallel. This is a "360-degree" audit.  
+**Use case:** When you first start working on a client site and need to find every single issue (Technical, Content, E-E-A-T, Backlinks, Schema).  
+**Output:** A master report in `output/full/MASTER-REPORT.md` with prioritized action items.
+
+#### 2. `/seo launch <niche or url>`
+**What it does:** Generates a complete SEO foundation for a brand new website.  
+**Use case:** Starting a new niche site or SaaS. It builds your keyword strategy, sitemap, content calendar, and schema pack from scratch.  
+**Output:** 15+ files in `output/launch/` covering every phase of a site launch.
+
+---
+
+### 🚀 Advanced Features (New)
+
+#### 3. `/seo wp <url>`
+**What it does:** Connects to your WordPress backend via MCP. It checks for "hidden" SEO debt like slow plugins, database bloat, and orphaned media.  
+**Setup:** You must provide a WordPress Application Password in `~/.config/gemini-seo/wordpress.json`.  
+**Value:** Finds why your site is slow or buggy from the *inside*.
+
+#### 4. `/seo links <url>`
+**What it does:** Analyzes your internal link architecture. It calculates "Link Juice" flow and finds "Orphaned Pages" (pages with no internal links).  
+**Value:** Helps you rank your important pages faster by suggesting where to add internal links.
+
+#### 5. `/seo decay <url>`
+**What it does:** Connects to Google Search Console to find "Decaying Content"—pages that used to get traffic but are now dropping.  
+**Value:** Prevents traffic loss by telling you exactly which pages need an update.
+
+#### 6. `/seo pov <url>`
+**What it does:** Performs a "Multi-LLM" audit. It shows you how Perplexity, ChatGPT, and Gemini "see" your page.  
+**Value:** Essential for **AEO (Answer Engine Optimization)**. Ensures your site is the #1 source for AI answers.
+
+#### 7. `/seo outreach <topic>`
+**What it does:** Scans your niche for top journalists and bloggers, then generates personalized email pitches.  
+**Value:** Automates the hardest part of SEO: Link Building and PR.
+
+---
+
+### 🛠️ Core Specialists
+
+| Command | Category | What it checks |
 |:---|:---|:---|
-| **`/seo full <url>`** | **MEGA** | Run all 27 specialists in parallel for a 360° audit. |
-| **`/seo launch <niche>`** | **MEGA** | Build a complete SEO foundation for a new site from zero. |
-| `/seo audit <url>` | Core | Standard technical + content audit (1-2 min). |
-| `/seo visual <url>` | Vision | Multimodal audit of Above-the-Fold (ATF) and mobile UX. |
-| `/seo geo <url>` | AEO | Optimize for AI Overviews, Perplexity, and ChatGPT. |
-| `/seo reddit <brand>` | Community | Track "Hidden Web" signals and r/subreddit mentions. |
-| `/seo fix <url>` | Implementation | Propose and apply direct code fixes for detected bugs. |
-| `/seo drift <url>` | Monitoring | Compare current state vs stored baseline for regressions. |
+| `/seo technical` | Technical | Robots.txt, Sitemap, Canonical tags, Security headers, 404s. |
+| `/seo content` | Quality | E-E-A-T, Reading level, AI-content detection, Keyword density. |
+| `/seo schema` | Structured | Validates JSON-LD and suggests missing Schema (FAQ, Product, etc). |
+| `/seo performance`| Speed | Core Web Vitals (LCP, INP, CLS) using PageSpeed data. |
+| `/seo visual` | UX | Mobile-friendliness and Above-the-Fold (ATF) visual hierarchy. |
+| `/seo geo` | Future | Optimization for Generative Engines (AI Overviews). |
+| `/seo reddit` | Signals | Brand mentions on Reddit and community sentiment analysis. |
+
+---
+
+## 🔌 MCP Setup Guide (Must Read)
+
+To unlock the full power of Gemini SEO, configure these integrations in `~/.config/gemini-seo/`:
+
+### 1. WordPress (Authenticated Audit)
+Create an **Application Password** in your WP Profile, then add it to `wordpress.json`:
+```json
+{
+  "wp_url": "https://yoursite.com",
+  "wp_user": "admin",
+  "wp_app_password": "xxxx xxxx xxxx xxxx"
+}
+```
+
+### 2. Google Search Console (Decay & Indexing)
+Place your `google-apis.json` (Service Account Key) in the config folder to enable `/seo decay` and automatic indexing.
+
+### 3. DataForSEO / Firecrawl
+These allow for live SERP data and JS-rendered crawling. Add your API keys to `dataforseo.json` and `firecrawl.json`.
+
+---
+
+## 🖼️ How Visual Audits Work
+When you run `/seo visual`, Gemini SEO uses **Playwright** to take a real screenshot of your site. It then sends this image to Gemini's vision model to analyze:
+1. Is the "Buy" or "Subscribe" button visible without scrolling?
+2. Is the font too small on mobile?
+3. Does the layout shift (CLS) during loading?
+
+---
+
+## 🛡️ Best Practices
+- **For deep audits:** Use `/seo full`. It takes 3-5 minutes but saves you hours of manual work.
+- **For new content:** Use `/seo pov` before you publish to ensure AI search engines will cite you.
+- **For regular maintenance:** Run `/seo drift baseline` every month to catch SEO regressions.
+
 
 ---
 
@@ -164,6 +244,6 @@ API keys for **DataForSEO**, **Google Search Console**, and **Firecrawl** should
 <div align="center">
 
 **Built for the future of Search. Driven by Gemini.**  
-*Created by AgriciDaniel & The Gemini CLI Community.*
+*Created by Muhammad Usman Ali (dotusman) & The Gemini CLI Community.*
 
 </div>

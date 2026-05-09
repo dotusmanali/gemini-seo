@@ -1,0 +1,12 @@
+name = "seo-pov"
+description = "Multi-LLM POV auditor to check how Perplexity, ChatGPT, and Gemini view the page."
+skill_path = "skills/seo-pov/GEMINI.md"
+capabilities = ["llm_simulation", "html_parsing"]
+parallel = true
+timeout_seconds = 180
+
+[input_schema]
+url = "string"
+
+[output_schema]
+report = "string"

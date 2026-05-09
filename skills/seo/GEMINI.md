@@ -13,7 +13,12 @@ description: "Main SEO Orchestrator. Coordinates all 27 specialized SEO sub-skil
 |---------|---------------------|-----------|
 | `/seo launch <url/niche>` | 8-phase generation pipeline | 5-10 min |
 | `/seo full <url>` | All 20+ specialists parallel | 3-5 min |
+| `/seo wp <url>` | **NEW: Deep WordPress authenticated audit via MCP** | 2-4 min |
 | `/seo audit <url>` | Core 8 specialists | 1-2 min |
+| `/seo links <url>` | **NEW: AI Internal Link Grapher & juice analysis** | 1-2 min |
+| `/seo decay <url>` | **NEW: Content Decay & Cannibalization Detector** | 1-2 min |
+| `/seo pov <url>` | **NEW: Multi-LLM POV (Perplexity vs GPT-4o search)** | 1-2 min |
+| `/seo outreach <url>`| **NEW: Automated PR & Journalist Outreach generator** | 1-2 min |
 | `/seo page <url>` | Single page deep dive | 30 sec |
 | All other `/seo` commands | Single specialist | 15-30 sec |
 

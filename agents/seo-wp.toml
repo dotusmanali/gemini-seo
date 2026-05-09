@@ -1,0 +1,12 @@
+name = "seo-wp"
+description = "WordPress backend auditor connecting via MCP to scan plugins, themes, and DB health."
+skill_path = "skills/seo-wp/GEMINI.md"
+capabilities = ["wordpress_rest_api", "mcp"]
+parallel = true
+timeout_seconds = 180
+
+[input_schema]
+url = "string"
+
+[output_schema]
+report = "string"

@@ -1,0 +1,12 @@
+name = "seo-decay"
+description = "Content decay and cannibalization detector using GSC data."
+skill_path = "skills/seo-decay/GEMINI.md"
+capabilities = ["google_search_console", "data_analysis"]
+parallel = true
+timeout_seconds = 120
+
+[input_schema]
+url = "string"
+
+[output_schema]
+report = "string"

@@ -1,0 +1,12 @@
+name = "seo-outreach"
+description = "Automated PR and journalist outreach generator."
+skill_path = "skills/seo-outreach/GEMINI.md"
+capabilities = ["web_search", "email_generation"]
+parallel = true
+timeout_seconds = 120
+
+[input_schema]
+url = "string"
+
+[output_schema]
+report = "string"

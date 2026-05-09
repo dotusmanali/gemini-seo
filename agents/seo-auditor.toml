@@ -1,0 +1,6 @@
+name = "seo-auditor"
+description = "Main SEO Auditor and Orchestrator. Coordinates all specialist sub-agents."
+skill_path = "skills/seo/GEMINI.md"
+capabilities = ["orchestration", "routing", "reporting"]
+parallel = true
+timeout_seconds = 600

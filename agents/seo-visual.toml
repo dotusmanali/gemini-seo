@@ -1,0 +1,6 @@
+name = "seo-visual"
+description = "Multimodal visual audit specialist."
+skill_path = "skills/seo-visual/GEMINI.md"
+capabilities = ["visual-audit", "screenshot-analysis"]
+parallel = true
+timeout_seconds = 300

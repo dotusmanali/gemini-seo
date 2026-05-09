@@ -1,0 +1,6 @@
+name = "seo-content"
+description = "Content Quality and E-E-A-T specialist."
+skill_path = "skills/seo-content/GEMINI.md"
+capabilities = ["eeat-audit", "readability-check", "ai-readiness"]
+parallel = true
+timeout_seconds = 300

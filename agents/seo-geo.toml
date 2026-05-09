@@ -1,0 +1,6 @@
+name = "seo-geo"
+description = "AI Search and GEO specialist."
+skill_path = "skills/seo-geo/GEMINI.md"
+capabilities = ["ai-search-optimization", "llms-txt-check"]
+parallel = true
+timeout_seconds = 300

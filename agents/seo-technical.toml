@@ -1,0 +1,6 @@
+name = "seo-technical"
+description = "Technical SEO specialist for crawlability and indexability."
+skill_path = "skills/seo-technical/GEMINI.md"
+capabilities = ["robots-check", "sitemap-validation", "canonical-audit"]
+parallel = true
+timeout_seconds = 300

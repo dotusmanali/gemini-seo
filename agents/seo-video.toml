@@ -1,0 +1,6 @@
+name = "seo-video"
+description = "Video SEO and YouTube specialist."
+skill_path = "skills/seo-video/GEMINI.md"
+capabilities = ["video-schema-audit", "transcript-optimization"]
+parallel = true
+timeout_seconds = 300

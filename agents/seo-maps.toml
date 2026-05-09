@@ -1,0 +1,6 @@
+name = "seo-maps"
+description = "Maps and Geo-grid intelligence specialist."
+skill_path = "skills/seo-maps/GEMINI.md"
+capabilities = ["geogrid-ranking", "competitor-radius"]
+parallel = true
+timeout_seconds = 600

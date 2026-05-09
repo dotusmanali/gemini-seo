@@ -1,0 +1,6 @@
+name = "seo-performance"
+description = "Core Web Vitals and speed specialist."
+skill_path = "skills/seo-performance/GEMINI.md"
+capabilities = ["cwv-measurement", "speed-audit"]
+parallel = true
+timeout_seconds = 300

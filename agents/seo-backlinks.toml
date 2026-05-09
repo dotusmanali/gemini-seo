@@ -1,0 +1,6 @@
+name = "seo-backlinks"
+description = "Backlink and Authority specialist."
+skill_path = "skills/seo-backlinks/GEMINI.md"
+capabilities = ["backlink-audit", "toxic-link-detection"]
+parallel = true
+timeout_seconds = 600

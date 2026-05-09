@@ -1,0 +1,6 @@
+name = "seo-reddit"
+description = "Reddit and Community SEO specialist."
+skill_path = "skills/seo-reddit/GEMINI.md"
+capabilities = ["community-signal-tracking", "sentiment-analysis"]
+parallel = true
+timeout_seconds = 600

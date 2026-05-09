@@ -1,0 +1,6 @@
+name = "seo-schema"
+description = "Structured Data and Schema specialist."
+skill_path = "skills/seo-schema/GEMINI.md"
+capabilities = ["jsonld-detection", "schema-validation"]
+parallel = true
+timeout_seconds = 300

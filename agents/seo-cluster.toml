@@ -1,0 +1,6 @@
+name = "seo-cluster"
+description = "Keyword clustering and topic architecture specialist."
+skill_path = "skills/seo-cluster/GEMINI.md"
+capabilities = ["topic-clustering", "hub-spoke-planning"]
+parallel = true
+timeout_seconds = 600

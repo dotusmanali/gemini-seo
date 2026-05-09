@@ -1,0 +1,6 @@
+name = "seo-aeo"
+description = "Answer Engine Optimization specialist."
+skill_path = "skills/seo-aeo/GEMINI.md"
+capabilities = ["snippet-optimization", "paa-coverage"]
+parallel = true
+timeout_seconds = 300

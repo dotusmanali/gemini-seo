@@ -1,0 +1,6 @@
+name = "seo-ecommerce"
+description = "E-commerce SEO specialist."
+skill_path = "skills/seo-ecommerce/GEMINI.md"
+capabilities = ["product-schema-audit", "category-seo"]
+parallel = true
+timeout_seconds = 300

@@ -1,0 +1,21 @@
+{
+  "Organization": {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "{{name}}",
+    "url": "{{url}}",
+    "logo": "{{logo}}"
+  },
+  "LocalBusiness": {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "{{name}}",
+    "address": "{{address}}",
+    "telephone": "{{phone}}"
+  },
+  "FAQPage": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": []
+  }
+}

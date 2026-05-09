@@ -1,0 +1,6 @@
+name = "seo-competitor"
+description = "Competitor analysis and gap specialist."
+skill_path = "skills/seo-competitor/GEMINI.md"
+capabilities = ["competitor-gap-analysis", "vs-page-gen"]
+parallel = true
+timeout_seconds = 300

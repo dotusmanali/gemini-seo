@@ -1,0 +1,6 @@
+name = "seo-drift"
+description = "SEO regression and drift detection specialist."
+skill_path = "skills/seo-drift/GEMINI.md"
+capabilities = ["drift-detection", "baseline-capture"]
+parallel = true
+timeout_seconds = 300

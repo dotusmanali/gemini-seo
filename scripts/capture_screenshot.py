@@ -1,32 +1,63 @@
-import asyncio
-import sys
+import argparse
+import json
 import os
-from playwright.async_api import async_playwright
+from pathlib import Path
+from playwright.sync_api import sync_playwright
 
-async def capture(url, output_path):
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
-        context = await browser.new_context(
-            viewport={'width': 1280, 'height': 720},
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 GeminiSEO/2.0"
-        )
-        page = await context.new_page()
-        try:
-            await page.goto(url, timeout=60000, wait_until="networkidle")
-            # Wait a bit for animations to settle
-            await asyncio.sleep(2)
-            await page.screenshot(path=output_path, full_page=False)
-            print(f"Screenshot saved to {output_path}")
-        except Exception as e:
-            print(f"Error: {e}")
-        finally:
-            await browser.close()
+def capture_and_analyze(url):
+    print(f"📸 Capturing visual intelligence for {url}")
+    
+    out_dir = Path("outputs/screenshots")
+    out_dir.mkdir(parents=True, exist_ok=True)
+    
+    full_path = out_dir / "full_page.png"
+    atf_path = out_dir / "atf_800px.png"
+    
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page(viewport={"width": 1280, "height": 800})
+        page.goto(url, wait_until="networkidle")
+        
+        page.screenshot(path=str(atf_path))
+        page.screenshot(path=str(full_path), full_page=True)
+        
+        # Analyze ATF using JS
+        analysis = page.evaluate("""() => {
+            const atfElements = Array.from(document.querySelectorAll('*')).filter(el => {
+                const rect = el.getBoundingClientRect();
+                return rect.top < 800 && rect.width > 0 && rect.height > 0;
+            });
+            
+            const hasH1 = atfElements.some(el => el.tagName === 'H1');
+            const hasButton = atfElements.some(el => el.tagName === 'BUTTON' || (el.tagName === 'A' && el.className.includes('btn')));
+            
+            return {
+                hero_has_text: hasH1,
+                hero_has_cta: hasButton,
+                atf_content_density: atfElements.length > 50 ? "high" : "medium",
+                estimated_cls_risk: document.querySelectorAll('img:not([width])').length > 0 ? "high" : "low",
+                visual_hierarchy_score: hasH1 ? 8 : 4
+            };
+        }""")
+        
+        browser.close()
+        return analysis
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--url", required=True, help="Target URL")
+    args = parser.parse_args()
+
+    analysis = capture_and_analyze(args.url)
+    analysis["url"] = args.url
+    
+    out_dir = Path("outputs")
+    out_file = out_dir / "visual-analysis.json"
+    
+    with open(out_file, "w", encoding="utf-8") as f:
+        json.dump(analysis, f, indent=2)
+        
+    print(f"✅ Visual analysis complete. Saved to {out_file} and outputs/screenshots/")
 
 if __name__ == "__main__":
-    if len(sys.argv) < 3:
-        print("Usage: python capture_screenshot.py [url] [output_path]")
-        sys.exit(1)
-    
-    url = sys.argv[1]
-    output = sys.argv[2]
-    asyncio.run(capture(url, output))
+    main()

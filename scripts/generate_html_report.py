@@ -27,32 +27,29 @@ def generate_report(domain, score, errors, warnings, info, pages, categories, ou
 def main():
     parser = argparse.ArgumentParser(description="Generate HTML Audit Report")
     parser.add_argument("--domain", required=True, help="Domain audited")
-    parser.add_argument("--json", help="Path to input JSON data file (optional)")
+    parser.add_argument("--json", help="Path to input JSON data file")
     args = parser.parse_args()
 
-    # Mock data for demonstration, normally this would be parsed from args.json
-    mock_categories = [
-        {
-            "name": "Internal Pages", "severity": "error", "issue_count": 0,
-            "issues": [
-                {"title": "4XX Errors", "status": "OK", "description": "Pages returning 4XX client errors"},
-                {"title": "5XX Errors", "status": "OK", "description": "Pages returning 5XX server errors"}
-            ]
-        },
-        {
-            "name": "Security", "severity": "warning", "issue_count": 148,
-            "issues": [
-                {"title": "HTTP URLs", "status": "Error", "description": "Internal pages served over insecure HTTP", "urls": [f"http://{args.domain}/page1", f"http://{args.domain}/page2"]},
-                {"title": "Missing HSTS Header", "status": "Warning", "description": "HTTPS pages missing the Strict-Transport-Security response header", "urls": [f"https://{args.domain}/"]}
-            ]
-        }
-    ]
+    if args.json and os.path.exists(args.json):
+        with open(args.json, 'r') as f:
+            data = json.load(f)
+        domain = data.get("domain", args.domain)
+        score = data.get("score", 0)
+        errors = data.get("errors", 0)
+        warnings = data.get("warnings", 0)
+        info = data.get("info", 0)
+        pages = data.get("pages", 0)
+        categories = data.get("categories", [])
+    else:
+        # Fallback to defaults
+        domain = args.domain
+        score, errors, warnings, info, pages, categories = 0, 0, 0, 0, 0, []
 
     out_dir = os.path.join("output", "report")
     os.makedirs(out_dir, exist_ok=True)
-    output_file = os.path.join(out_dir, f"{args.domain.replace('.', '_')}_audit_report.html")
+    output_file = os.path.join(out_dir, f"{domain.replace('.', '_')}_audit_report.html")
 
-    generate_report(args.domain, 78, 78, 266, 107, 17, mock_categories, output_file)
+    generate_report(domain, score, errors, warnings, info, pages, categories, output_file)
 
 if __name__ == "__main__":
     main()
